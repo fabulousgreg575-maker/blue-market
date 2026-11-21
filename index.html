@@ -222,12 +222,6 @@
     display:inline-block;margin:0 auto;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
     color:var(--ok);border:1.5px solid var(--ok);padding:3px 10px;
   }
-  .remove-btn{
-    background:transparent;border:1.5px solid var(--danger);color:var(--danger);font-size:.8rem;font-weight:700;
-    letter-spacing:.06em;text-transform:uppercase;cursor:pointer;min-height:40px;padding:8px 14px;align-self:center;margin-top:6px;
-  }
-  .remove-btn:hover{background:var(--danger);color:#fff}
-
   /* ---------- Owner tools — at the very bottom, away from customers ---------- */
   .owner-tools{
     background:#ece8dd;border-top:1px solid var(--line-dark);
@@ -545,13 +539,13 @@
 <div class="owner-tools" id="ownerTools">
   <div class="wrap">
     <p class="owner-label">Shop owner only</p>
-    <p class="owner-note-text">Add a new product here, at the bottom of the page. To delete a product, use the Delete button on its card in the collection above.</p>
+    <p class="owner-note-text">Add a new product here, at the bottom of the page, away from customers browsing the collection.</p>
     <div class="add-slot" id="addTileSlot"></div>
 
     <!-- ADD A PRODUCT -->
     <div class="add-panel" id="addPanel" hidden>
       <h3>Add a product</h3>
-      <p class="add-intro">Upload a photo, add the name and the price. Your product shows in the collection above straight away, with its own Buy on WhatsApp button and a Delete button.</p>
+      <p class="add-intro">Upload a photo, add the name and the price. Your product shows in the collection above straight away, with its own Buy on WhatsApp button.</p>
       <form class="add-form" id="addForm" novalidate>
         <div class="add-field full">
           <span class="upload-box">
@@ -717,7 +711,6 @@
           '<input type="text" id="location-'+p.id+'" data-location-for="'+p.id+'" placeholder="Town or city — optional" autocomplete="off">' +
         '</div>' +
         '<button class="buy-btn" type="button" data-buy="'+p.id+'">Buy on WhatsApp</button>' +
-        '<button class="remove-btn" type="button" data-remove="'+p.id+'" aria-label="Delete '+esc(p.name)+'">Delete this product</button>' +
       '</div>';
     return card;
   }
@@ -827,19 +820,9 @@
     return card.getAttribute("data-selected-colour") || product.variants[0].color;
   }
 
-  /* ----- Events: colour switching, remove, + WhatsApp buy ----- */
+  /* ----- Events: colour switching + WhatsApp buy ----- */
   grid.addEventListener("click", function(e){
     if (e.target.closest("#addTile")) return; /* the tile has its own handler */
-    var removeBtn = e.target.closest("[data-remove]");
-    if (removeBtn){
-      var rid = parseInt(removeBtn.getAttribute("data-remove"), 10);
-      var rCard = removeBtn.closest("[data-card]");
-      if (rCard) rCard.remove();
-      for (var i = PRODUCTS.length - 1; i >= 0; i--){
-        if (PRODUCTS[i].id === rid) PRODUCTS.splice(i, 1);
-      }
-      return;
-    }
     var colourBtn = e.target.closest("[data-colour], [data-thumb]");
     if (colourBtn){
       var cid = parseInt(colourBtn.getAttribute("data-colour") || colourBtn.getAttribute("data-thumb"), 10);
