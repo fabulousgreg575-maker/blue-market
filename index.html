@@ -144,7 +144,8 @@
   /* ---------- Trust bar ---------- */
   .trust-bar{background:#ffffff;border-bottom:1px solid var(--line)}
   .trust-inner{display:grid;gap:0;padding-top:8px;padding-bottom:8px}
-  @media(min-width:760px){ .trust-inner{grid-template-columns:repeat(3,1fr)} }
+  @media(min-width:760px){ .trust-inner{grid-template-columns:repeat(2,1fr)} }
+  @media(min-width:1020px){ .trust-inner{grid-template-columns:repeat(4,1fr)} }
   .trust-item{padding:20px 18px;text-align:center;border-top:1px solid var(--line)}
   .trust-item:first-child{border-top:0}
   @media(min-width:760px){
@@ -153,6 +154,79 @@
   }
   .trust-item strong{display:block;font-size:1rem;font-weight:700;letter-spacing:.02em;color:var(--ink);line-height:1.3}
   .trust-item span{display:block;margin-top:4px;font-size:.96rem;font-weight:500;color:var(--muted);line-height:1.5}
+  .trust-badge-label{display:inline-block;margin-bottom:8px;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ok);border:1.5px solid var(--ok);padding:3px 9px;border-radius:999px}
+
+  /* ---------- Trust badges (delivery / payment / checked) ---------- */
+  .badge-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px auto 0;max-width:820px}
+  .badge-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;color:var(--ink);border:1.5px solid var(--line-dark);
+    font-size:.86rem;font-weight:700;letter-spacing:.03em;
+    padding:9px 15px;border-radius:999px;line-height:1.25;text-align:left;
+  }
+  .badge-pill .badge-check{
+    width:20px;height:20px;flex:0 0 20px;border-radius:50%;background:var(--ok);color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;line-height:1;
+  }
+  .badge-pill.on-dark{background:#fff;border-color:#fff}
+  .checked-note{
+    margin:22px auto 0;max-width:680px;text-align:center;
+    background:#eef3ee;border:1px solid #c9d8c9;padding:16px 20px;
+    font-size:1rem;font-weight:500;color:var(--muted-strong);line-height:1.6;
+  }
+  .checked-note strong{color:var(--ink)}
+
+  /* ---------- Photo carousel — shoes in motion ---------- */
+  .carousel-section{padding:64px 0 8px;background:var(--bg)}
+  .carousel-shell{max-width:860px;margin:0 auto}
+  .carousel{
+    position:relative;background:#111110;border:1px solid var(--line-dark);
+    box-shadow:0 10px 30px rgba(20,18,12,.14);overflow:hidden;
+  }
+  .carousel-viewport{overflow:hidden}
+  .carousel-track{display:flex;transition:transform .55s ease}
+  @media (prefers-reduced-motion: reduce){ .carousel-track{transition:none} }
+  .carousel-slide{flex:0 0 100%;min-width:0;position:relative;background:#1c1b18}
+  .carousel-slide img{width:100%;height:min(62vw,520px);min-height:280px;object-fit:cover;display:block}
+  .carousel-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:38px 20px 16px;text-align:left;color:#fff;
+    background:linear-gradient(to top, rgba(8,8,7,.82) 0%, rgba(8,8,7,.35) 60%, rgba(8,8,7,0) 100%);
+    font-size:.95rem;font-weight:600;letter-spacing:.02em;line-height:1.45;
+  }
+  .carousel-caption strong{display:block;font-family:var(--serif);font-size:1.35rem;font-weight:700;line-height:1.2}
+  .carousel-btn{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:48px;height:48px;min-height:48px;padding:0;border-radius:50%;
+    background:#fff;color:var(--ink);border:2px solid var(--ink);cursor:pointer;
+    font-size:1.35rem;line-height:1;display:flex;align-items:center;justify-content:center;
+  }
+  .carousel-btn:hover{background:var(--ink);color:#fff}
+  .carousel-btn.prev{left:12px}
+  .carousel-btn.next{right:12px}
+  .carousel-dots{display:flex;gap:0;justify-content:center;padding:16px 6px 4px;flex-wrap:wrap}
+  /* The button itself is the touch target — 36px wide x 44px tall — and the
+     buttons tile side by side with no gap, so one dot's tap area ends exactly
+     where the next one begins and can never overlap it: a tap on a dot always
+     lands on that dot's own button. The visible 12px circle is drawn by
+     ::before in the centre of the button. */
+  .carousel-dot{
+    width:36px;height:44px;min-height:44px;padding:0;border:0;border-radius:0;
+    background:transparent;cursor:pointer;flex:0 0 36px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .carousel-dot::before{
+    content:"";width:12px;height:12px;flex:0 0 12px;border-radius:50%;
+    border:2px solid var(--ink);background:transparent;box-sizing:border-box;
+  }
+  .carousel-dot[aria-current="true"]::before{background:var(--ink)}
+  .carousel-status{text-align:center;color:var(--muted);font-size:.9rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:8px 0 0}
+  @media(max-width:560px){
+    .carousel-slide img{height:72vw;min-height:240px}
+    .carousel-btn{width:48px;height:48px;min-height:48px}
+    /* Slightly narrower dot targets on small phones so all 8 stay on one
+       row — still 44px tall, and still tiling without any overlap */
+    .carousel-dot{width:32px;flex-basis:32px}
+  }
 
   /* ---------- Sections ---------- */
   section{padding:76px 0}
@@ -198,7 +272,7 @@
   .colour-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
   .colour-pill{
     border:1.5px solid var(--line-dark);background:transparent;color:var(--ink);
-    padding:9px 16px;font-size:.9rem;font-weight:600;letter-spacing:.03em;cursor:pointer;min-height:42px;
+    padding:9px 16px;font-size:.9rem;font-weight:600;letter-spacing:.03em;cursor:pointer;min-height:44px;
   }
   .colour-pill[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
   .size-row,.location-row{display:flex;flex-direction:column;gap:6px;margin-top:4px;text-align:left}
@@ -236,6 +310,33 @@
   .owner-tools .add-slot{max-width:520px;margin:20px auto 0}
   .owner-tools .add-panel{margin-top:20px;text-align:left}
   .owner-tools .add-panel h3{text-align:center}
+  .delete-panel{
+    margin:28px auto 0;max-width:640px;background:var(--paper);border:1px solid var(--line);
+    box-shadow:0 4px 18px rgba(20,18,12,.06);padding:26px 22px;text-align:left;
+  }
+  .delete-panel h3{font-size:1.55rem;font-weight:700;text-align:center;margin:0}
+  .delete-panel .delete-intro{margin:8px auto 0;text-align:center;color:var(--muted-strong);font-size:.98rem;font-weight:500;line-height:1.6;max-width:52ch}
+  .delete-list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+  .delete-row{
+    display:flex;align-items:center;gap:12px;justify-content:space-between;
+    border:1px solid var(--line);padding:10px 12px;background:#fff;
+  }
+  .delete-row-info{display:flex;align-items:center;gap:12px;min-width:0;text-align:left}
+  .delete-row img{width:52px;height:52px;object-fit:cover;flex:0 0 52px;border:1px solid var(--line)}
+  .delete-row-name{font-weight:600;font-size:1rem;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}
+  .delete-row-price{font-size:.88rem;font-weight:500;color:var(--muted)}
+  .delete-btn{
+    flex:0 0 auto;background:#fff;color:var(--danger);border:2px solid var(--danger);
+    padding:10px 14px;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+    cursor:pointer;min-height:46px;white-space:nowrap;
+  }
+  .delete-btn:hover{background:var(--danger);color:#fff}
+  .delete-empty{margin:18px 0 0;text-align:center;color:var(--muted);font-size:.98rem;font-weight:500}
+  @media(max-width:520px){
+    .delete-row{flex-direction:column;align-items:stretch;text-align:center}
+    .delete-row-info{justify-content:flex-start}
+    .delete-btn{width:100%}
+  }
 
   /* ---------- Add a product ---------- */
   .add-card{
@@ -342,6 +443,33 @@
   footer p{margin:12px auto 0;max-width:56ch;color:#e8e2d4;font-size:1rem;font-weight:500;line-height:1.65}
   footer .f-small{font-size:.9rem;font-weight:500;color:#bdb4a2;margin-top:22px}
 
+  /* ---------- Mobile optimisation — phones ---------- */
+  @media(max-width:640px){
+    /* Compact sticky header so more of the shop is on screen */
+    .header-inner{padding:12px 0 14px;gap:10px}
+    /* Hero: photo as a banner, copy in normal flow below it — the headline,
+       badges and buttons can never be clipped or overlap the photo */
+    .hero-photo{height:240px;min-height:0}
+    .hero-copy{position:static;background:#1c1b18;padding:30px 22px 36px}
+    .hero-copy h1{font-size:2.3rem}
+    .hero-copy p.lede{font-size:1.06rem}
+    .hero-cta a{flex:1 1 220px;justify-content:center;padding:15px 20px}
+    .hero-badges{flex-direction:column;align-items:stretch}
+    .hero-badge{justify-content:center;padding:11px 14px}
+    /* Tighter section rhythm on phones */
+    section{padding:52px 0}
+    .carousel-section{padding-top:44px}
+    .section-head{margin-bottom:32px}
+    /* Comfortable touch targets and no iOS zoom on focus (16px+ inputs) */
+    .add-field input[type="text"],.add-field input[type="number"],.add-field textarea{min-height:50px;font-size:1rem}
+    .size-row input[type="text"],.location-row input[type="text"]{min-height:48px}
+    .thumb-btn{width:60px;height:60px;min-height:60px;flex-basis:60px}
+    .delete-btn{min-height:50px}
+    .add-submit,.add-cancel{min-height:54px}
+    /* Long words and numbers wrap instead of pushing the page sideways */
+    .card-name,.delete-row-name,.review-text{overflow-wrap:break-word}
+  }
+
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 </head>
@@ -356,6 +484,7 @@
       <span class="brand-tag">Quality Men's Shoes</span>
     </a>
     <nav class="main" aria-label="Main">
+      <a href="#in-motion">In Motion</a>
       <a href="#shop">Shop</a>
       <a href="#why">Why Blue Market</a>
       <a href="#how">How to Order</a>
@@ -378,8 +507,9 @@
       <p class="lede">Good shoes for work, church, outings and every day. Pick your pair and order on WhatsApp. You can add your size and town if you want — both are optional. We deliver anywhere in Ghana — and you pay when your shoes arrive.</p>
       <p class="hero-price"><strong>GH¢ 350</strong> &nbsp;for every pair</p>
       <div class="hero-badges" aria-label="Delivery information">
-        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Nationwide delivery — all of Ghana</span>
-        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> Pay on delivery</span>
+        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Nationwide delivery — all of Ghana</span>
+        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Pay on delivery</span>
+        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Checked before shipping</span>
       </div>
       <div class="hero-cta">
         <a href="#shop">Shop the shoes</a>
@@ -388,20 +518,58 @@
     </div>
   </div>
 
-  <!-- TRUST BAR -->
+  <!-- TRUST BAR — clear delivery, payment and quality badges -->
   <div class="trust-bar">
     <div class="wrap trust-inner">
       <div class="trust-item">
+        <span class="trust-badge-label">Delivery badge</span>
         <strong>Nationwide Delivery</strong>
-        <span>We deliver to every town and city in Ghana.</span>
+        <span>We deliver to every town and city in Ghana — Accra to Tamale and everywhere in between.</span>
       </div>
       <div class="trust-item">
+        <span class="trust-badge-label">Payment badge</span>
         <strong>Pay on Delivery</strong>
-        <span>See your shoes first. You pay when they arrive.</span>
+        <span>See your shoes first. You pay when they arrive — no payment before delivery.</span>
       </div>
       <div class="trust-item">
+        <span class="trust-badge-label">Quality badge</span>
+        <strong>Checked Before Shipping</strong>
+        <span>Every pair is checked by hand before it leaves us, so what arrives is right.</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-badge-label">Price badge</span>
         <strong>One Price — GH¢ 350</strong>
         <span>Every style, every pair. No hidden charges on the shoe price.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO CAROUSEL — shoes in motion, using the real product photos -->
+  <div class="carousel-section" id="in-motion" aria-labelledby="carouselHeading">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:28px">
+        <h2 id="carouselHeading">See the Shoes in Motion</h2>
+        <p>Real photos from the collection — on feet, out and about, and up close. Swipe, tap the arrows, or let it play through. Every pair below is GH¢ 350.</p>
+        <div class="rule" aria-hidden="true"></div>
+        <div class="badge-row" aria-label="Delivery and quality badges">
+          <span class="badge-pill"><span class="badge-check" aria-hidden="true">✓</span> Nationwide delivery — all of Ghana</span>
+          <span class="badge-pill"><span class="badge-check" aria-hidden="true">✓</span> Pay on delivery</span>
+          <span class="badge-pill"><span class="badge-check" aria-hidden="true">✓</span> Checked before shipping</span>
+        </div>
+      </div>
+      <div class="carousel-shell">
+        <div class="carousel" id="shoeCarousel">
+          <div class="carousel-viewport">
+            <!-- Slides are built by the script below, cloning the hero and product
+                 photos already on the page — no photo is embedded a second time. -->
+            <div class="carousel-track" id="carouselTrack"></div>
+          </div>
+          <button class="carousel-btn prev" type="button" id="carouselPrev" aria-label="Previous photo">‹</button>
+          <button class="carousel-btn next" type="button" id="carouselNext" aria-label="Next photo">›</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Choose a photo"></div>
+        <p class="carousel-status" id="carouselStatus" aria-live="polite">Photo 1 of 8</p>
+        <div class="checked-note"><strong>Checked before shipping:</strong> every pair is checked by hand — size, colour, stitching and soles — before it is packed and sent to you. If it is not right, it does not leave.</div>
       </div>
     </div>
   </div>
@@ -420,6 +588,12 @@
         <div class="delivery-banner">
           <h3>We deliver anywhere in Ghana</h3>
           <p>Accra, Kumasi, Takoradi, Tamale, Ho — wherever you are, we will bring your shoes to you. <strong>Delivery comes first, payment comes after.</strong> You only pay when your pair is in your hands.</p>
+          <div class="badge-row" aria-label="Delivery and quality badges">
+            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Nationwide delivery</span>
+            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Pay on delivery</span>
+            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Checked before shipping</span>
+          </div>
+          <p style="margin-top:16px;font-size:.98rem">Every pair is checked before shipping — we look over the size, colour, stitching and soles before your order leaves.</p>
         </div>
       </div>
     </div>
@@ -451,7 +625,7 @@
         <div class="why-item">
           <div class="num" aria-hidden="true">No. 4</div>
           <h3>Nationwide delivery</h3>
-          <p>We deliver all across Ghana, and you pay on delivery. No need to pay before you see your shoes.</p>
+          <p>We deliver all across Ghana, and you pay on delivery. No need to pay before you see your shoes. And every pair is checked before shipping, so it leaves us in good order.</p>
         </div>
       </div>
     </div>
@@ -483,8 +657,8 @@
         </div>
         <div class="step">
           <div class="step-no">Step 4</div>
-          <h3>We deliver, you pay</h3>
-          <p>Press send in WhatsApp and we will arrange delivery to you — anywhere in Ghana. You pay GH¢ 350 when your shoes arrive.</p>
+          <h3>We check, deliver, you pay</h3>
+          <p>Press send in WhatsApp and we will check your pair by hand, then arrange delivery to you — anywhere in Ghana. You pay GH¢ 350 when your shoes arrive.</p>
         </div>
       </div>
       <div class="owner-note" aria-label="Shop details to be added by the owner">
@@ -492,6 +666,7 @@
         <ul>
           <li><strong>Delivery:</strong> Nationwide — we deliver all across Ghana.</li>
           <li><strong>Payment:</strong> Pay on delivery. You pay when your shoes arrive.</li>
+          <li><strong>Checked before shipping:</strong> Every pair is checked before it leaves us.</li>
           <li>WhatsApp number: <strong>+233 53 840 1035</strong> — tap any Buy on WhatsApp button to order.</li>
         </ul>
       </div>
@@ -539,7 +714,7 @@
 <div class="owner-tools" id="ownerTools">
   <div class="wrap">
     <p class="owner-label">Shop owner only</p>
-    <p class="owner-note-text">Add a new product here, at the bottom of the page, away from customers browsing the collection.</p>
+    <p class="owner-note-text">Add a new product or delete a product here, at the very bottom of the page — away from customers browsing the collection. There are no delete buttons on the product cards above, so customers cannot delete anything.</p>
     <div class="add-slot" id="addTileSlot"></div>
 
     <!-- ADD A PRODUCT -->
@@ -577,6 +752,14 @@
           <button class="add-cancel" type="button" id="addCancel">Cancel</button>
         </div>
       </form>
+    </div>
+
+    <!-- DELETE A PRODUCT — owner only, at the very bottom of the page -->
+    <div class="delete-panel" id="deletePanel">
+      <h3>Delete a product</h3>
+      <p class="delete-intro">Owner only — use the Delete button here at the bottom of the page to take a product off the shop. Customers do not see these buttons on the products above.</p>
+      <ul class="delete-list" id="deleteList"></ul>
+      <p class="delete-empty" id="deleteEmpty" hidden>No products left to delete.</p>
     </div>
   </div>
 </div>
@@ -716,6 +899,51 @@
   }
   PRODUCTS.forEach(function(p){ grid.appendChild(buildCard(p)); });
 
+  /* ----- Delete a product — owner only, list at the very bottom of the page ----- */
+  var deleteList = document.getElementById("deleteList");
+  var deleteEmpty = document.getElementById("deleteEmpty");
+  function renderDeleteList(){
+    if (!deleteList) return;
+    deleteList.innerHTML = "";
+    PRODUCTS.forEach(function(p){
+      var li = document.createElement("li");
+      li.className = "delete-row";
+      li.setAttribute("data-delete-row", p.id);
+      var first = p.variants[0];
+      li.innerHTML =
+        '<span class="delete-row-info">' +
+          (first && first.img ? '<img src="'+esc(first.img)+'" alt="">' : '') +
+          '<span><span class="delete-row-name">'+esc(p.name)+'</span><br><span class="delete-row-price">'+money(priceOf(p))+'</span></span>' +
+        '</span>';
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "delete-btn";
+      btn.textContent = "Delete this product";
+      btn.setAttribute("data-delete-product", p.id);
+      btn.setAttribute("aria-label", "Delete this product: " + p.name);
+      li.appendChild(btn);
+      deleteList.appendChild(li);
+    });
+    if (deleteEmpty){ deleteEmpty.hidden = PRODUCTS.length !== 0; }
+  }
+  function deleteProductById(id){
+    for (var i = PRODUCTS.length - 1; i >= 0; i--){
+      if (PRODUCTS[i].id === id){ PRODUCTS.splice(i, 1); }
+    }
+    var card = grid.querySelector('[data-card="'+id+'"]');
+    if (card){ card.remove(); }
+    renderDeleteList();
+  }
+  if (deleteList){
+    deleteList.addEventListener("click", function(e){
+      var btn = e.target.closest("[data-delete-product]");
+      if (!btn) return;
+      var id = parseInt(btn.getAttribute("data-delete-product"), 10);
+      deleteProductById(id);
+    });
+  }
+  renderDeleteList();
+
   /* ----- "Add a product" button — at the very bottom of the page, in the owner tools area ----- */
   var addTile = document.createElement("button");
   addTile.type = "button";
@@ -797,6 +1025,7 @@
     PRODUCTS.push(p);
     var card = buildCard(p);
     grid.appendChild(card);
+    renderDeleteList();
     addForm.reset();
     photoDataUrl = "";
     uploadName.textContent = "No photo chosen yet";
@@ -857,6 +1086,119 @@
     message += deliveryLine;
     window.open(waLink(message), "_blank", "noopener");
   });
+
+  /* ----- Photo carousel — shoes in motion (existing product photos only) ----- */
+  (function(){
+    var track = document.getElementById("carouselTrack");
+    var carousel = document.getElementById("shoeCarousel");
+    var dotsWrap = document.getElementById("carouselDots");
+    var status = document.getElementById("carouselStatus");
+    var prevBtn = document.getElementById("carouselPrev");
+    var nextBtn = document.getElementById("carouselNext");
+    if (!track || !carousel || !dotsWrap) return;
+
+    /* Build the slides by cloning photos that are already on the page —
+       the hero photo and the product photos — so each photo is embedded
+       only once in the page instead of being loaded again for the carousel. */
+    var SLIDE_DATA = [
+      { file:"hero.jpg",    title:"Black Slip-On — Leather-Look",     note:"GH¢ 350 · Our hero pair, ready for every day" },
+      { file:"shoe-6.jpg",  title:"Mesh Slip-On — Grey",              note:"GH¢ 350 · Worn on the foot, light and easy" },
+      { file:"shoe-7.jpg",  title:"Black Canvas Slip-On — Cream Sole", note:"GH¢ 350 · On the move, thick comfy sole" },
+      { file:"shoe-10.jpg", title:"Navy Mesh Outdoor Shoe",           note:"GH¢ 350 · Worn out, chunky outdoor sole" },
+      { file:"shoe-3.jpg",  title:"Mesh Slip-On — Black/Grey",        note:"GH¢ 350 · Clean look, white sole" },
+      { file:"shoe-4.jpg",  title:"Brown Formal Zip Shoe",            note:"GH¢ 350 · The dress shoe — church, work, occasions" },
+      { file:"shoe-9.jpg",  title:"Black Sport Lace-Up — Red Accent", note:"GH¢ 350 · Flexible — see it folded in the corner" },
+      { file:"shoe-5.jpg",  title:"Black Loafers — Leather-Look",     note:"GH¢ 350 · Smart pair, no laces" }
+    ];
+    function endsWithFile(src, file){
+      return src.length >= file.length && src.substring(src.length - file.length) === file;
+    }
+    function pageImg(file){
+      var imgs = document.querySelectorAll("img");
+      for (var i = 0; i < imgs.length; i++){
+        if (endsWithFile(imgs[i].getAttribute("src") || "", file)) return imgs[i];
+      }
+      return null;
+    }
+    function altFor(file, fallback){
+      for (var pi = 0; pi < PRODUCTS.length; pi++){
+        var vs = PRODUCTS[pi].variants;
+        for (var vi = 0; vi < vs.length; vi++){
+          if (endsWithFile(vs[vi].img, file)) return vs[vi].alt;
+        }
+      }
+      return fallback || "";
+    }
+    SLIDE_DATA.forEach(function(sd, si){
+      var source = pageImg(sd.file);
+      if (!source) return;
+      var slide = document.createElement("div");
+      slide.className = "carousel-slide";
+      var clone = source.cloneNode(false);
+      clone.removeAttribute("data-main-img");
+      clone.alt = altFor(sd.file, source.alt);
+      if (si === 0){ clone.removeAttribute("loading"); }
+      else { clone.setAttribute("loading", "lazy"); }
+      var caption = document.createElement("div");
+      caption.className = "carousel-caption";
+      caption.innerHTML = "<strong>" + esc(sd.title) + "</strong> " + esc(sd.note);
+      slide.appendChild(clone);
+      slide.appendChild(caption);
+      track.appendChild(slide);
+    });
+
+    var slides = track.children;
+    var total = slides.length;
+    var index = 0;
+    var timer = null;
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    for (var d = 0; d < total; d++){
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "carousel-dot";
+      dot.setAttribute("aria-label", "Show photo " + (d + 1) + " of " + total);
+      dot.setAttribute("aria-current", d === 0 ? "true" : "false");
+      (function(i){ dot.addEventListener("click", function(){ goTo(i); restart(); }); })(d);
+      dotsWrap.appendChild(dot);
+    }
+    var dots = dotsWrap.children;
+
+    function goTo(i){
+      index = (i + total) % total;
+      track.style.transform = "translateX(-" + (index * 100) + "%)";
+      for (var k = 0; k < total; k++){ dots[k].setAttribute("aria-current", k === index ? "true" : "false"); }
+      if (status){ status.textContent = "Photo " + (index + 1) + " of " + total; }
+    }
+    function next(){ goTo(index + 1); }
+    function prev(){ goTo(index - 1); }
+    function start(){
+      if (reduceMotion || timer) return;
+      timer = setInterval(next, 3500);
+    }
+    function stop(){
+      if (timer){ clearInterval(timer); timer = null; }
+    }
+    function restart(){ stop(); start(); }
+    if (prevBtn){ prevBtn.addEventListener("click", function(){ prev(); restart(); }); }
+    if (nextBtn){ nextBtn.addEventListener("click", function(){ next(); restart(); }); }
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    /* Touch swipe */
+    var startX = null;
+    carousel.addEventListener("touchstart", function(e){ startX = e.changedTouches[0].clientX; stop(); }, { passive:true });
+    carousel.addEventListener("touchend", function(e){
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40){ if (dx < 0){ next(); } else { prev(); } }
+      startX = null;
+      start();
+    }, { passive:true });
+    goTo(0);
+    start();
+  })();
 })();
 </script>
 </body>
