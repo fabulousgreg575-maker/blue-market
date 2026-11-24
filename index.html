@@ -444,94 +444,13 @@
   .owner-tools .owner-note-text{
     margin:8px auto 0;max-width:52ch;font-size:1.02rem;font-weight:600;color:var(--muted-strong);line-height:1.55;
   }
-  .owner-tools .add-slot{max-width:520px;margin:20px auto 0}
-  .owner-tools .add-panel{margin-top:20px;text-align:left}
-  .owner-tools .add-panel h3{text-align:center}
-  .delete-panel{
-    margin:28px auto 0;max-width:640px;background:var(--paper);border:1px solid var(--line);
-    box-shadow:0 4px 18px rgba(20,18,12,.06);padding:26px 22px;text-align:left;
+  .manage-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    margin-top:20px;background:var(--ink);color:#fff;border:2px solid var(--ink);
+    padding:15px 28px;font-size:.92rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;min-height:52px;cursor:pointer;
   }
-  .delete-panel h3{font-size:1.55rem;font-weight:700;text-align:center;margin:0}
-  .delete-panel .delete-intro{margin:8px auto 0;text-align:center;color:var(--muted-strong);font-size:1.05rem;font-weight:600;line-height:1.6;max-width:52ch}
-  .delete-list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
-  .delete-row{
-    display:flex;align-items:center;gap:12px;justify-content:space-between;
-    border:1px solid var(--line);padding:10px 12px;background:#fff;
-  }
-  .delete-row-info{display:flex;align-items:center;gap:12px;min-width:0;text-align:left}
-  .delete-row img{width:52px;height:52px;object-fit:cover;flex:0 0 52px;border:1px solid var(--line)}
-  .delete-row-name{font-weight:700;font-size:1.06rem;line-height:1.35;color:var(--ink);overflow-wrap:anywhere}
-  .delete-row-price{font-size:.95rem;font-weight:600;color:var(--muted-strong)}
-  .delete-btn{
-    flex:0 0 auto;background:#fff;color:var(--danger);border:2px solid var(--danger);
-    padding:10px 14px;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-    cursor:pointer;min-height:46px;white-space:nowrap;
-  }
-  .delete-btn:hover{background:var(--danger);color:#fff}
-  .delete-empty{margin:18px 0 0;text-align:center;color:var(--muted-strong);font-size:1.05rem;font-weight:600}
-  @media(max-width:520px){
-    .delete-row{flex-direction:column;align-items:stretch;text-align:center}
-    .delete-row-info{justify-content:flex-start}
-    .delete-btn{width:100%}
-  }
-
-  /* ---------- Add a product ---------- */
-  .add-card{
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
-    background:#ffffff;border:2px dashed var(--line-dark);color:var(--ink);
-    min-height:0;padding:22px 22px;text-align:center;cursor:pointer;width:100%;
-  }
-  .add-card:hover{border-color:var(--ink)}
-  .add-card .plus{
-    width:48px;height:48px;border:2px solid var(--ink);border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.6rem;font-weight:400;line-height:1;font-family:var(--sans);
-  }
-  .add-card .add-title{font-family:var(--serif);font-size:1.35rem;font-weight:700;line-height:1.15}
-  .add-card .add-sub{font-size:1.02rem;font-weight:600;color:var(--muted-strong);line-height:1.55;max-width:36ch}
-  .add-panel{
-    margin-top:28px;background:var(--paper);border:1px solid var(--line);
-    box-shadow:0 4px 18px rgba(20,18,12,.06);padding:30px 24px;text-align:left;
-  }
-  .add-panel[hidden]{display:none}
-  .add-panel h3{font-size:1.7rem;font-weight:700;text-align:center}
-  .add-panel .add-intro{margin:8px auto 0;text-align:center;color:var(--muted-strong);font-size:1.06rem;font-weight:600;max-width:52ch;line-height:1.6}
-  .add-form{display:grid;gap:18px;margin-top:24px}
-  @media(min-width:760px){ .add-form{grid-template-columns:1fr 1fr} .add-form .full{grid-column:1/-1} }
-  .add-field{display:flex;flex-direction:column;gap:6px}
-  .add-field label{font-size:.84rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
-  .add-field label .optional{font-weight:600;text-transform:none;letter-spacing:.02em;color:var(--muted-strong)}
-  .add-field input[type="text"],.add-field input[type="number"],.add-field textarea{
-    width:100%;padding:11px 12px;border:1.5px solid var(--line-dark);background:#fff;color:var(--ink);border-radius:0;
-    font-size:1.02rem;font-weight:500;
-  }
-  .add-field textarea{resize:vertical;min-height:64px}
-  .add-field input:focus,.add-field textarea:focus{outline:none;border-color:var(--ink)}
-  .upload-box{
-    border:2px dashed var(--line-dark);background:var(--bg);padding:18px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:10px;
-  }
-  .upload-box .upload-label{
-    display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
-    background:var(--ink);color:#fff;border:2px solid var(--ink);
-    padding:11px 20px;font-size:.9rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;min-height:48px;
-  }
-  .upload-box input[type="file"]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .upload-name{font-size:1.02rem;font-weight:600;color:var(--muted-strong);overflow-wrap:anywhere}
-  .upload-preview{width:120px;height:120px;object-fit:cover;border:1px solid var(--line)}
-  .upload-preview[hidden]{display:none}
-  .add-error{margin:0;color:var(--danger);font-size:.98rem;font-weight:600;text-align:center}
-  .add-error[hidden]{display:none}
-  .add-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:4px}
-  .add-submit{
-    background:var(--ink);color:#fff;border:2px solid var(--ink);
-    padding:14px 26px;font-size:.86rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-height:52px;
-  }
-  .add-submit:hover{background:#000;border-color:#000}
-  .add-cancel{
-    background:transparent;color:var(--ink);border:2px solid var(--line-dark);
-    padding:14px 26px;font-size:.86rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;min-height:52px;
-  }
+  .manage-btn:hover{background:#000;border-color:#000;text-decoration:underline;text-underline-offset:4px}
 
   /* ---------- Why / How ---------- */
   .alt{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -597,13 +516,11 @@
     section{padding:52px 0}
     .section-head{margin-bottom:32px}
     /* Comfortable touch targets and no iOS zoom on focus (16px+ inputs) */
-    .add-field input[type="text"],.add-field input[type="number"],.add-field textarea{min-height:50px;font-size:1rem}
     .size-row input[type="text"],.location-row input[type="text"]{min-height:48px}
     .thumb-btn{width:60px;height:60px;min-height:60px;flex-basis:60px}
-    .delete-btn{min-height:50px}
-    .add-submit,.add-cancel{min-height:54px}
+    .manage-btn{min-height:54px;width:100%;max-width:340px}
     /* Long words and numbers wrap instead of pushing the page sideways */
-    .card-name,.delete-row-name,.review-text{overflow-wrap:break-word}
+    .card-name,.review-text{overflow-wrap:break-word}
   }
 
   .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -819,49 +736,8 @@
 <div class="owner-tools" id="ownerTools">
   <div class="wrap">
     <p class="owner-label">Shop owner only</p>
-    <p class="owner-note-text">Add a new product or delete a product here, at the very bottom of the page — away from customers browsing the collection. There are no delete buttons on the product cards above, so customers cannot delete anything.</p>
-    <div class="add-slot" id="addTileSlot"></div>
-
-    <!-- ADD A PRODUCT -->
-    <div class="add-panel" id="addPanel" hidden>
-      <h3>Add a product</h3>
-      <p class="add-intro">Upload a photo, add the name and the price. Your product shows in the collection above straight away, with its own Buy on WhatsApp button.</p>
-      <form class="add-form" id="addForm" novalidate>
-        <div class="add-field full">
-          <span class="upload-box">
-            <img class="upload-preview" id="uploadPreview" alt="" hidden>
-            <label class="upload-label" for="newPhoto">+ Upload photo</label>
-            <input type="file" id="newPhoto" accept="image/*">
-            <span class="upload-name" id="uploadName">No photo chosen yet</span>
-          </span>
-        </div>
-        <div class="add-field">
-          <label for="newName">Product name</label>
-          <input type="text" id="newName" placeholder="e.g. Brown Suede Boots" autocomplete="off">
-        </div>
-        <div class="add-field">
-          <label for="newPrice">Price (GH¢)</label>
-          <input type="number" id="newPrice" placeholder="e.g. 350" min="1" step="1" inputmode="numeric">
-        </div>
-        <div class="add-field">
-          <label for="newColour">Colour <span class="optional">(optional)</span></label>
-          <input type="text" id="newColour" placeholder="e.g. Brown" autocomplete="off">
-        </div>
-        <p class="add-error full" id="addError" hidden></p>
-        <div class="add-actions full">
-          <button class="add-submit" type="submit">Add to collection</button>
-          <button class="add-cancel" type="button" id="addCancel">Cancel</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- DELETE A PRODUCT — owner only, at the very bottom of the page -->
-    <div class="delete-panel" id="deletePanel">
-      <h3>Delete a product</h3>
-      <p class="delete-intro">Owner only — use the Delete button here at the bottom of the page to take a product off the shop. Customers do not see these buttons on the products above.</p>
-      <ul class="delete-list" id="deleteList"></ul>
-      <p class="delete-empty" id="deleteEmpty" hidden>No products left to delete.</p>
-    </div>
+    <p class="owner-note-text">Products are managed on a separate page. Add new products or remove products there — your changes will show here in the store.</p>
+    <a class="manage-btn" href="/manage.html">Add or remove products</a>
   </div>
 </div>
 
@@ -917,9 +793,10 @@
   ];
 
   var grid = document.getElementById("productGrid");
+  var ACTIVE_PRODUCTS = PRODUCTS.slice();
 
   function money(n){ return "GH¢ " + n.toLocaleString("en-GH"); }
-  function productById(id){ for (var i=0;i<PRODUCTS.length;i++){ if (PRODUCTS[i].id===id) return PRODUCTS[i]; } return null; }
+  function productById(id){ for (var i=0;i<ACTIVE_PRODUCTS.length;i++){ if (String(ACTIVE_PRODUCTS[i].id)===String(id)) return ACTIVE_PRODUCTS[i]; } return null; }
   function variantOf(p, color){
     for (var i=0;i<p.variants.length;i++){ if (p.variants[i].color===color) return p.variants[i]; }
     return p.variants[0];
@@ -989,141 +866,42 @@
       '</div>';
     return card;
   }
-  PRODUCTS.forEach(function(p){ grid.appendChild(buildCard(p)); });
-
-  /* ----- Delete a product — owner only, list at the very bottom of the page ----- */
-  var deleteList = document.getElementById("deleteList");
-  var deleteEmpty = document.getElementById("deleteEmpty");
-  function renderDeleteList(){
-    if (!deleteList) return;
-    deleteList.innerHTML = "";
-    PRODUCTS.forEach(function(p){
-      var li = document.createElement("li");
-      li.className = "delete-row";
-      li.setAttribute("data-delete-row", p.id);
-      var first = p.variants[0];
-      li.innerHTML =
-        '<span class="delete-row-info">' +
-          (first && first.img ? '<img src="'+esc(first.img)+'" alt="">' : '') +
-          '<span><span class="delete-row-name">'+esc(p.name)+'</span><br><span class="delete-row-price">'+money(priceOf(p))+'</span></span>' +
-        '</span>';
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "delete-btn";
-      btn.textContent = "Delete this product";
-      btn.setAttribute("data-delete-product", p.id);
-      btn.setAttribute("aria-label", "Delete this product: " + p.name);
-      li.appendChild(btn);
-      deleteList.appendChild(li);
-    });
-    if (deleteEmpty){ deleteEmpty.hidden = PRODUCTS.length !== 0; }
+  function renderCatalogue(list){
+    ACTIVE_PRODUCTS = list.slice();
+    grid.innerHTML = "";
+    ACTIVE_PRODUCTS.forEach(function(p){ grid.appendChild(buildCard(p)); });
   }
-  function deleteProductById(id){
-    for (var i = PRODUCTS.length - 1; i >= 0; i--){
-      if (PRODUCTS[i].id === id){ PRODUCTS.splice(i, 1); }
-    }
-    var card = grid.querySelector('[data-card="'+id+'"]');
-    if (card){ card.remove(); }
-    renderDeleteList();
-  }
-  if (deleteList){
-    deleteList.addEventListener("click", function(e){
-      var btn = e.target.closest("[data-delete-product]");
-      if (!btn) return;
-      var id = parseInt(btn.getAttribute("data-delete-product"), 10);
-      deleteProductById(id);
-    });
-  }
-  renderDeleteList();
-
-  /* ----- "Add a product" button — at the very bottom of the page, in the owner tools area ----- */
-  var addTile = document.createElement("button");
-  addTile.type = "button";
-  addTile.className = "add-card";
-  addTile.id = "addTile";
-  addTile.setAttribute("aria-controls", "addPanel");
-  addTile.setAttribute("aria-expanded", "false");
-  addTile.innerHTML =
-    '<span class="plus" aria-hidden="true">+</span>' +
-    '<span class="add-title">Add a product</span>' +
-    '<span class="add-sub">Owner only — add a new shoe with its photo and price.</span>';
-  var addTileSlot = document.getElementById("addTileSlot");
-  if (addTileSlot){ addTileSlot.appendChild(addTile); } else { document.body.appendChild(addTile); }
-
-  /* ----- Add-a-product form ----- */
-  var addPanel = document.getElementById("addPanel");
-  var addForm = document.getElementById("addForm");
-  var addError = document.getElementById("addError");
-  var photoInput = document.getElementById("newPhoto");
-  var uploadName = document.getElementById("uploadName");
-  var uploadPreview = document.getElementById("uploadPreview");
-  var photoDataUrl = "";
-  var nextId = 1000;
-
-  function openPanel(){
-    addPanel.hidden = false;
-    addTile.setAttribute("aria-expanded", "true");
-    addPanel.scrollIntoView({ behavior:"smooth", block:"start" });
-    document.getElementById("newName").focus({ preventScroll:true });
-  }
-  function closePanel(){
-    addPanel.hidden = true;
-    addTile.setAttribute("aria-expanded", "false");
-  }
-  function showError(msg){
-    addError.textContent = msg;
-    addError.hidden = !msg;
-  }
-  addTile.addEventListener("click", function(){
-    if (addPanel.hidden){ openPanel(); } else { closePanel(); }
-  });
-  document.getElementById("addCancel").addEventListener("click", closePanel);
-  photoInput.addEventListener("change", function(){
-    var file = photoInput.files && photoInput.files[0];
-    photoDataUrl = "";
-    uploadPreview.hidden = true;
-    uploadPreview.removeAttribute("src");
-    if (!file){ uploadName.textContent = "No photo chosen yet"; return; }
-    uploadName.textContent = file.name;
-    var reader = new FileReader();
-    reader.onload = function(){
-      photoDataUrl = String(reader.result || "");
-      if (photoDataUrl){
-        uploadPreview.src = photoDataUrl;
-        uploadPreview.hidden = false;
-      }
-    };
-    reader.readAsDataURL(file);
-  });
-  addForm.addEventListener("submit", function(e){
-    e.preventDefault();
-    var name = document.getElementById("newName").value.trim();
-    var priceRaw = document.getElementById("newPrice").value.trim();
-    var price = parseFloat(priceRaw);
-    var colour = document.getElementById("newColour").value.trim();
-    if (!photoDataUrl){ showError("Please upload a photo of the product first."); return; }
-    if (!name){ showError("Please add the product name."); return; }
-    if (!priceRaw || isNaN(price) || price <= 0){ showError("Please add the price in GH¢."); return; }
-    showError("");
-    var p = {
-      id: nextId++,
-      name: name,
-      price: Math.round(price),
+  function addedToProduct(item){
+    if (!item || !item.name) return null;
+    var colour = item.colour || item.color || "";
+    var price = (typeof item.price === "number" && item.price > 0) ? item.price : (parseFloat(item.price) || PRICE);
+    return {
+      id: item.id,
+      name: String(item.name),
+      price: price,
       custom: true,
-      variants: [ { color: colour, img: photoDataUrl, alt: name + (colour ? " — " + colour : "") } ]
+      variants: [ { color: colour, img: item.img || "", alt: String(item.name) + (colour ? " \u2014 " + colour : "") } ]
     };
-    PRODUCTS.push(p);
-    var card = buildCard(p);
-    grid.appendChild(card);
-    renderDeleteList();
-    addForm.reset();
-    photoDataUrl = "";
-    uploadName.textContent = "No photo chosen yet";
-    uploadPreview.hidden = true;
-    uploadPreview.removeAttribute("src");
-    closePanel();
-    card.scrollIntoView({ behavior:"smooth", block:"center" });
-  });
+  }
+  /* Render built-ins immediately so the store never shows empty */
+  renderCatalogue(PRODUCTS);
+
+  /* Load delta from API: built-ins minus deleted, plus added */
+  (function loadFromApi(){
+    if (typeof fetch !== "function") return;
+    fetch("/api/products", { headers: { "Accept": "application/json" } })
+      .then(function(res){ if (!res.ok) throw new Error("API " + res.status); return res.json(); })
+      .then(function(data){
+        if (!data || typeof data !== "object") return;
+        var deleted = Array.isArray(data.deleted) ? data.deleted.map(function(x){ return String(x); }) : [];
+        var addedRaw = Array.isArray(data.added) ? data.added : [];
+        var filtered = PRODUCTS.filter(function(prod){ return deleted.indexOf(String(prod.id)) === -1; });
+        var added = [];
+        addedRaw.forEach(function(item){ var prod = addedToProduct(item); if (prod) added.push(prod); });
+        renderCatalogue(filtered.concat(added));
+      })
+      .catch(function(){ /* API not there yet — built-ins already rendered */ });
+  })();
 
   /* ----- Colour / photo switching on a card ----- */
   function setCardColour(card, product, color){
@@ -1141,17 +919,17 @@
 
   /* ----- Events: colour switching + WhatsApp buy ----- */
   grid.addEventListener("click", function(e){
-    if (e.target.closest("#addTile")) return; /* the tile has its own handler */
     var colourBtn = e.target.closest("[data-colour], [data-thumb]");
     if (colourBtn){
-      var cid = parseInt(colourBtn.getAttribute("data-colour") || colourBtn.getAttribute("data-thumb"), 10);
+      var cid = colourBtn.getAttribute("data-colour") || colourBtn.getAttribute("data-thumb");
       var cCard = colourBtn.closest("[data-card]");
-      setCardColour(cCard, productById(cid), colourBtn.getAttribute("data-color"));
+      var cProd = productById(cid);
+      if (cProd && cCard) setCardColour(cCard, cProd, colourBtn.getAttribute("data-color"));
       return;
     }
     var btn = e.target.closest("[data-buy]");
     if (!btn) return;
-    var id = parseInt(btn.getAttribute("data-buy"), 10);
+    var id = btn.getAttribute("data-buy");
     var card = btn.closest("[data-card]");
     var p = productById(id);
     if (!p) return;
