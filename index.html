@@ -252,9 +252,11 @@
   /* ---------- Header ---------- */
   header.site{
     position:sticky;top:0;z-index:40;
-    background:#ffffff;
-    border-bottom:1px solid var(--line);
-    box-shadow:0 2px 14px rgba(20,18,12,.06);
+    background:rgba(250,249,246,.82);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4);
+    backdrop-filter:blur(14px) saturate(1.4);
+    border-bottom:1px solid rgba(221,214,198,.7);
+    box-shadow:0 4px 24px rgba(20,18,12,.05);
   }
   .header-inner{
     display:flex;align-items:center;justify-content:space-between;
@@ -369,8 +371,8 @@
   .checked-note strong{color:var(--ink)}
 
   /* ---------- Sections ---------- */
-  section{padding:76px 0}
-  .section-head{text-align:center;margin-bottom:44px}
+  section{padding:104px 0}
+  .section-head{text-align:center;margin-bottom:56px}
   .section-head h2{font-size:clamp(2rem,4vw,2.75rem);font-weight:700;letter-spacing:.02em}
   .section-head p{margin:14px auto 0;color:var(--muted-strong);max-width:64ch;font-size:1.12rem;font-weight:600;line-height:1.65}
   .rule{width:52px;height:3px;background:var(--accent);margin:20px auto 0}
@@ -386,13 +388,13 @@
 
   /* ---------- Product grid ---------- */
   .grid{
-    display:grid;gap:28px 22px;
+    display:grid;gap:38px 26px;
     grid-template-columns:repeat(2,1fr);
   }
   @media(min-width:900px){ .grid{grid-template-columns:repeat(3,1fr)} }
   @media(min-width:1180px){ .grid{grid-template-columns:repeat(4,1fr)} }
   @media(max-width:560px){ .grid{grid-template-columns:1fr} }
-  .card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);box-shadow:0 4px 18px rgba(20,18,12,.06);padding-bottom:20px}
+  .card{display:flex;flex-direction:column;background:rgba(255,255,255,.92);border:1px solid rgba(221,214,198,.8);box-shadow:0 10px 34px rgba(20,18,12,.07);padding-bottom:24px}
   .card-photo{aspect-ratio:1/1;background:var(--paper);overflow:hidden;border-bottom:1px solid var(--line)}
   .card-photo img{width:100%;height:100%;object-fit:cover}
   .thumbs{display:flex;gap:8px;padding:12px 16px 0}
@@ -410,7 +412,7 @@
   .colour-static{font-size:1.02rem;font-weight:700;color:var(--muted-strong)}
   .colour-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
   .colour-pill{
-    border:1.5px solid var(--line-dark);background:transparent;color:var(--ink);
+    border:1.5px solid var(--line-dark);background:rgba(255,255,255,.55);color:var(--ink);
     padding:9px 16px;font-size:.98rem;font-weight:700;letter-spacing:.03em;cursor:pointer;min-height:44px;
   }
   .colour-pill[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -437,20 +439,15 @@
   }
   /* ---------- Owner tools — at the very bottom, away from customers ---------- */
   .owner-tools{
-    background:#ece8dd;border-top:1px solid var(--line-dark);
-    padding:34px 0 44px;text-align:center;
-  }
-  .owner-tools .owner-label{
-    margin:0 auto;font-size:.82rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
-  }
-  .owner-tools .owner-note-text{
-    margin:8px auto 0;max-width:52ch;font-size:1.02rem;font-weight:600;color:var(--muted-strong);line-height:1.55;
+    background:transparent;
+    padding:72px 0 88px;text-align:center;
   }
   .manage-btn{
     display:inline-flex;align-items:center;justify-content:center;
-    margin-top:20px;background:var(--accent);color:#fff;border:2px solid var(--accent);
-    padding:15px 28px;font-size:.92rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-    text-decoration:none;min-height:52px;cursor:pointer;
+    background:var(--accent);color:#fff;border:2px solid var(--accent);
+    padding:16px 34px;font-size:.92rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;min-height:54px;cursor:pointer;
+    box-shadow:0 12px 30px rgba(14,90,87,.22);
   }
   .manage-btn:hover{background:var(--accent-dark);border-color:var(--accent-dark);text-decoration:underline;text-underline-offset:4px}
 
@@ -481,11 +478,11 @@
   .review-grid{display:grid;gap:22px}
   @media(min-width:760px){ .review-grid{grid-template-columns:repeat(3,1fr)} }
   .review-card{
-    border:1px solid var(--line);
+    border:1px solid rgba(221,214,198,.8);
     text-align:center;
-    padding:32px 24px 28px;background:var(--bg);
+    padding:36px 26px 32px;background:rgba(255,255,255,.65);
     display:flex;flex-direction:column;align-items:center;gap:14px;
-    box-shadow:0 4px 16px rgba(20,18,12,.05);
+    box-shadow:0 10px 30px rgba(20,18,12,.05);
   }
   .review-stars{color:#8a6d1f;font-size:1.08rem;letter-spacing:.24em;line-height:1}
   .review-text{margin:0;font-family:var(--serif);font-size:1.38rem;font-weight:700;line-height:1.5;color:var(--ink)}
@@ -515,7 +512,7 @@
     .hero-badges{flex-direction:column;align-items:stretch}
     .hero-badge{justify-content:center;padding:11px 14px}
     /* Tighter section rhythm on phones */
-    section{padding:52px 0}
+    section{padding:68px 0}
     .section-head{margin-bottom:32px}
     /* Comfortable touch targets and no iOS zoom on focus (16px+ inputs) */
     .size-row input[type="text"],.location-row input[type="text"]{min-height:48px}
@@ -558,42 +555,11 @@
     <div class="hero-copy">
       <p class="over">Blue Market</p>
       <h1>Quality Men's Shoes in Ghana</h1>
-      <p class="lede">Good shoes for work, church, outings and every day. Pick your pair and order on WhatsApp. You can add your size and town if you want — both are optional. We deliver anywhere in Ghana — and you pay when your shoes arrive.</p>
+      <p class="lede">Good shoes for work, church, outings and every day. Pick your pair and order on WhatsApp.</p>
       <p class="hero-price"><strong>GH¢ 350</strong> &nbsp;for every pair</p>
-      <div class="hero-badges" aria-label="Delivery information">
-        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Nationwide delivery — all of Ghana</span>
-        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Pay on delivery</span>
-        <span class="hero-badge"><span class="dot" aria-hidden="true"></span> ✓ Checked before shipping</span>
-      </div>
       <div class="hero-cta">
         <a href="#shop">Shop the shoes</a>
         <a class="secondary" href="#how">How to order</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- TRUST BAR — clear delivery, payment and quality badges -->
-  <div class="trust-bar">
-    <div class="wrap trust-inner">
-      <div class="trust-item">
-        <span class="trust-badge-label">Delivery badge</span>
-        <strong>Nationwide Delivery</strong>
-        <span>We deliver to every town and city in Ghana — Accra to Tamale and everywhere in between.</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-badge-label">Payment badge</span>
-        <strong>Pay on Delivery</strong>
-        <span>See your shoes first. You pay when they arrive — no payment before delivery.</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-badge-label">Quality badge</span>
-        <strong>Checked Before Shipping</strong>
-        <span>Every pair is checked by hand before it leaves us, so what arrives is right.</span>
-      </div>
-      <div class="trust-item">
-        <span class="trust-badge-label">Price badge</span>
-        <strong>One Price — GH¢ 350</strong>
-        <span>Every style, every pair. No hidden charges on the shoe price.</span>
       </div>
     </div>
   </div>
@@ -603,23 +569,10 @@
     <div class="wrap">
       <div class="section-head">
         <h2>The Collection</h2>
-        <p><strong>8 styles — every pair GH¢ 350.</strong> Two styles come in two colours. Pick your colour where there is a choice, then tap Buy on WhatsApp. You can add your size and your town if you want — both are optional, and your order goes through either way. We deliver nationwide in Ghana, and you pay on delivery.</p>
+        <p><strong>8 styles — every pair GH¢ 350.</strong> Pick your colour where there is a choice, then tap Buy on WhatsApp. Size and town are optional.</p>
         <div class="rule" aria-hidden="true"></div>
       </div>
       <div class="grid" id="productGrid"></div>
-
-      <div style="margin-top:36px">
-        <div class="delivery-banner">
-          <h3>We deliver anywhere in Ghana</h3>
-          <p>Accra, Kumasi, Takoradi, Tamale, Ho — wherever you are, we will bring your shoes to you. <strong>Delivery comes first, payment comes after.</strong> You only pay when your pair is in your hands.</p>
-          <div class="badge-row" aria-label="Delivery and quality badges">
-            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Nationwide delivery</span>
-            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Pay on delivery</span>
-            <span class="badge-pill on-dark"><span class="badge-check" aria-hidden="true">✓</span> Checked before shipping</span>
-          </div>
-          <p style="margin-top:16px;font-size:1.05rem">Every pair is checked before shipping — we look over the size, colour, stitching and soles before your order leaves.</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -648,8 +601,8 @@
         </div>
         <div class="why-item">
           <div class="num" aria-hidden="true">No. 4</div>
-          <h3>Nationwide delivery</h3>
-          <p>We deliver all across Ghana, and you pay on delivery. No need to pay before you see your shoes. And every pair is checked before shipping, so it leaves us in good order.</p>
+          <h3>Checked by hand</h3>
+          <p>Every pair is checked before it leaves us, so what arrives is right.</p>
         </div>
       </div>
     </div>
@@ -672,27 +625,18 @@
         <div class="step">
           <div class="step-no">Step 2</div>
           <h3>Pick colour — size &amp; town are optional</h3>
-          <p>Choose your colour where there is a choice. If you want, you can also type your size and your town on the shoe card. Both are optional — you can leave them blank.</p>
+          <p>Choose your colour where there is a choice. You can also add your size and town on the shoe card, or leave them blank.</p>
         </div>
         <div class="step">
           <div class="step-no">Step 3</div>
           <h3>Tap Buy on WhatsApp</h3>
-          <p>The button opens WhatsApp with your exact shoe, colour, the GH¢ 350 price, and a link to that shoe's photo already written in the message. If you added your size or town, they go in the message too. If you left them blank, the message still goes — nothing stops your order.</p>
+          <p>The button opens WhatsApp with your shoe, colour and the GH¢ 350 price already written in the message.</p>
         </div>
         <div class="step">
           <div class="step-no">Step 4</div>
           <h3>We check, deliver, you pay</h3>
-          <p>Press send in WhatsApp and we will check your pair by hand, then arrange delivery to you — anywhere in Ghana. You pay GH¢ 350 when your shoes arrive.</p>
+          <p>We check your pair by hand, then deliver it anywhere in Ghana. You pay GH¢ 350 when your shoes arrive.</p>
         </div>
-      </div>
-      <div class="owner-note" aria-label="Shop details to be added by the owner">
-        <strong>Good to know</strong>
-        <ul>
-          <li><strong>Delivery:</strong> Nationwide — we deliver all across Ghana.</li>
-          <li><strong>Payment:</strong> Pay on delivery. You pay when your shoes arrive.</li>
-          <li><strong>Checked before shipping:</strong> Every pair is checked before it leaves us.</li>
-          <li>WhatsApp number: <strong>+233 53 840 1035</strong> — tap any Buy on WhatsApp button to order.</li>
-        </ul>
       </div>
     </div>
   </section>
@@ -729,16 +673,14 @@
 <footer>
   <div class="wrap">
     <div class="f-brand">Blue Market</div>
-    <p>Quality men's shoes in Ghana. Every pair GH¢ 350 — one simple price for every style. We deliver nationwide, and you pay on delivery. Orders are taken on WhatsApp.</p>
-    <p class="f-small">Nationwide delivery in Ghana &nbsp;·&nbsp; Pay on delivery &nbsp;·&nbsp; Every pair GH¢ 350</p>
+    <p>Quality men's shoes in Ghana. Every pair GH¢ 350. Orders are taken on WhatsApp.</p>
+    <p class="f-small">WhatsApp: +233 53 840 1035</p>
   </div>
 </footer>
 
 <!-- OWNER TOOLS — lowest at the bottom of the page, away from customers -->
 <div class="owner-tools" id="ownerTools">
   <div class="wrap">
-    <p class="owner-label">Shop owner only</p>
-    <p class="owner-note-text">Products are managed on a separate page. Add new products or remove products there — your changes will show here in the store.</p>
     <a class="manage-btn" href="/manage.html">Add or remove products</a>
   </div>
 </div>
