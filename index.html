@@ -302,9 +302,8 @@
   }
 
   /* ---------- Hero ---------- */
-  .hero-track{position:relative;height:250vh;background:#1c1b18}
-  .hero{position:sticky;top:0;background:#1c1b18;overflow:hidden;height:100vh;height:100svh;min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:flex-end;justify-content:center}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#1c1b18}
+  .hero{position:relative;background:#1c1b18;overflow:hidden;height:100vh;height:100svh;min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:flex-end;justify-content:center}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#1c1b18}
   .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(8,8,7,.90) 0%, rgba(8,8,7,.68) 46%, rgba(8,8,7,.34) 72%, rgba(8,8,7,.22) 100%);pointer-events:none}
   .hero-copy{
     position:relative;z-index:2;width:100%;
@@ -515,7 +514,7 @@
   @media(max-width:640px){
     /* Compact sticky header so more of the shop is on screen */
     .header-inner{padding:12px 0 14px;gap:10px}
-    /* Hero: video background with copy over it on phones too — fills the whole viewport while pinned, no gap */
+    /* Hero: image background with copy over it on phones too — fills the whole viewport, no gap */
     .hero{height:100vh;height:100svh;min-height:100vh;min-height:100svh}
     .hero-copy{padding:56px 22px 36px}
     .hero-copy h1{font-size:2.3rem}
@@ -559,12 +558,9 @@
 
 <main id="top">
 
-  <!-- HERO — scroll-driven video: sticky inside a 250vh track, scrubbed by scroll -->
-  <div class="hero-track" id="heroTrack">
+  <!-- HERO — full-viewport image -->
   <div class="hero">
-    <video class="hero-video" muted playsinline preload="auto" poster="https://bluemarkets.online/hero-poster.jpg" aria-hidden="true" tabindex="-1">
-      <source src="https://bluemarkets.online/hero-shoe.mp4" type="video/mp4" />
-    </video>
+    <img class="hero-img" src="https://bluemarkets.online/hero.jpg" alt="Black suede slip-on shoe resting on books against a dark background" loading="eager" fetchpriority="high">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-copy">
       <p class="over">Blue Market</p>
@@ -576,7 +572,6 @@
         <a class="secondary" href="#how">How to order</a>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- SHOP -->
@@ -704,64 +699,6 @@
 <script>
 (function(){
   "use strict";
-
-  /* Hero video — scroll-driven scrub, never plays on its own.
-     The video stays paused; scroll progress through the 250vh track
-     sets a target time, and a rAF loop lerps currentTime toward it
-     so scrolling down plays it forward and up plays it backward. */
-  var heroVideo = document.querySelector(".hero-video");
-  var heroTrack = document.getElementById("heroTrack");
-  if (heroVideo && heroTrack){
-    heroVideo.muted = true;
-    heroVideo.defaultMuted = true;
-    heroVideo.pause();
-    var heroReady = false;
-    var heroDuration = 0;
-    var heroTargetTime = 0;
-    var heroSmoothTime = 0;
-    function heroProgress(){
-      var rect = heroTrack.getBoundingClientRect();
-      var heroEl = heroTrack.querySelector(".hero");
-      var heroH = heroEl ? heroEl.offsetHeight : window.innerHeight;
-      var total = heroTrack.offsetHeight - heroH;
-      if (total <= 0) return 0;
-      var p = -rect.top / total;
-      if (p < 0) p = 0;
-      if (p > 1) p = 1;
-      return p;
-    }
-    function heroUpdateTarget(){
-      if (!heroReady || !heroDuration) return;
-      heroTargetTime = heroProgress() * heroDuration;
-    }
-    function heroTick(){
-      if (heroReady && heroDuration){
-        heroSmoothTime += (heroTargetTime - heroSmoothTime) * 0.12;
-        if (Math.abs(heroTargetTime - heroSmoothTime) < 0.001){
-          heroSmoothTime = heroTargetTime;
-        }
-        if (Math.abs(heroVideo.currentTime - heroSmoothTime) > 0.01){
-          try { heroVideo.currentTime = heroSmoothTime; } catch(e){}
-        }
-        if (heroVideo.paused === false){ heroVideo.pause(); }
-      }
-      window.requestAnimationFrame(heroTick);
-    }
-    heroVideo.addEventListener("loadedmetadata", function(){
-      heroDuration = heroVideo.duration || 14;
-      heroReady = true;
-      heroVideo.pause();
-      try { heroVideo.currentTime = 0; } catch(e){}
-      heroSmoothTime = 0;
-      heroUpdateTarget();
-      heroSmoothTime = heroTargetTime;
-      try { heroVideo.currentTime = heroSmoothTime; } catch(e){}
-    });
-    window.addEventListener("scroll", heroUpdateTarget, { passive: true });
-    window.addEventListener("resize", heroUpdateTarget);
-    heroUpdateTarget();
-    window.requestAnimationFrame(heroTick);
-  }
 
   /* ============================================================
      WhatsApp number — this is the ONE place it is set.
