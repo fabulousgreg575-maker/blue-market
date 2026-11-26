@@ -649,9 +649,21 @@
   }
 
   /* ---------- Hero ---------- */
-  .hero{position:relative;background:#1c1b18;overflow:hidden;height:100vh;height:100svh;min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:flex-end;justify-content:center}
-  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#1c1b18}
-  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(8,8,7,.90) 0%, rgba(8,8,7,.68) 46%, rgba(8,8,7,.34) 72%, rgba(8,8,7,.22) 100%);pointer-events:none}
+  .hero{position:relative;background:#060605;overflow:hidden;height:100vh;height:100svh;min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:flex-end;justify-content:center}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#060605}
+  .hero-poster-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#060605;display:none}
+  /* Narrow portrait: show the whole frame (full circle of shoes), never crop the sides.
+     The video's near-black background blends with the hero's dark background. */
+  @media (orientation:portrait) and (max-width:768px){
+    .hero-video{object-fit:contain}
+    .hero-poster-still{object-fit:contain}
+  }
+  /* Reduced motion: no autoplay — the poster still stands in for the video. */
+  @media (prefers-reduced-motion: reduce){
+    .hero-video{display:none}
+    .hero-poster-still{display:block}
+  }
+  .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to top, rgba(8,8,7,.78) 0%, rgba(8,8,7,.45) 46%, rgba(8,8,7,.18) 72%, rgba(8,8,7,.10) 100%);pointer-events:none}
   .hero-copy{
     position:relative;z-index:2;width:100%;
     padding:72px 22px 42px;
@@ -1055,9 +1067,12 @@
 
 <main id="top">
 
-  <!-- HERO — full-viewport image -->
+  <!-- HERO — full-viewport background video (plays as-is, no zoom or crop effects) -->
   <div class="hero">
-    <img class="hero-img" src="https://bluemarkets.online/hero.jpg" alt="Black suede slip-on shoe resting on books against a dark background" loading="eager" fetchpriority="high">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="https://bluemarkets.online/hero-poster.jpg" aria-hidden="true">
+      <source src="https://bluemarkets.online/hero-video.mp4" type="video/mp4">
+    </video>
+    <img class="hero-poster-still" src="https://bluemarkets.online/hero-poster.jpg" alt="" aria-hidden="true">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="hero-copy t-stagger">
       <p class="over">Blue Market</p>
@@ -1290,6 +1305,23 @@
   /* Header WhatsApp link — general enquiry */
   document.getElementById("headerWhats").href =
     waLink("Hi Blue Market, I have a question about your shoes.");
+
+  /* ----- Hero background video — plays exactly as-is (no zoom/pan effects).
+     Reduced motion: never autoplay; the poster still is shown instead
+     (the CSS guard swaps the video for the still, this stops playback). ----- */
+  (function initHeroVideo(){
+    var video = document.querySelector(".hero-video");
+    if (!video) return;
+    video.muted = true;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      video.removeAttribute("autoplay");
+      video.removeAttribute("loop");
+      video.pause();
+      return;
+    }
+    var attempt = video.play();
+    if (attempt && typeof attempt.catch === "function"){ attempt.catch(function(){}); }
+  })();
 
   /* ----- Build product grid ----- */
   function esc(s){
