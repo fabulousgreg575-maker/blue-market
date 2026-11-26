@@ -652,11 +652,13 @@
   .hero{position:relative;background:#060605;overflow:hidden;height:100vh;height:100svh;min-height:100vh;min-height:100svh;width:100%;display:flex;align-items:flex-end;justify-content:center}
   .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#060605}
   .hero-poster-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;background:#060605;display:none}
-  /* Narrow portrait: show the whole frame (full circle of shoes), never crop the sides.
-     The video's near-black background blends with the hero's dark background. */
+  /* Mobile portrait only: enlarged fill — switch from contain (tiny, letterboxed)
+     to cover so the video fills the whole hero, plus a gentle 1.15 scale so it
+     feels big and full-bleed without over-zooming or cropping too much.
+     Desktop / landscape is untouched and keeps the base cover rule above. */
   @media (orientation:portrait) and (max-width:768px){
-    .hero-video{object-fit:contain}
-    .hero-poster-still{object-fit:contain}
+    .hero-video{object-fit:cover;transform:scale(1.15)}
+    .hero-poster-still{object-fit:cover;transform:scale(1.15)}
   }
   /* Reduced motion: no autoplay — the poster still stands in for the video. */
   @media (prefers-reduced-motion: reduce){
