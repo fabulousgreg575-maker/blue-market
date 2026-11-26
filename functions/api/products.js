@@ -15,6 +15,10 @@ const BUILTIN = [
   { id: 6, name: "Black Canvas Slip-On — Cream Sole", price: 350, colours: ["Black"] },
   { id: 7, name: "Black Sport Lace-Up — Red Accent", price: 350, colours: ["Black"] },
   { id: 8, name: "Navy Mesh Outdoor Shoe", price: 350, colours: ["Navy"] },
+  { id: 9, name: "Black Leather Loafer — Gold Medusa Bar", price: 480, colours: ["Black"] },
+  { id: 10, name: "Black Leather Slip-On — Silver Horse Emblem", price: 550, colours: ["Black"] },
+  { id: 11, name: "Black Pebbled-Leather Slip-On Loafer", price: 350, colours: ["Black"] },
+  { id: 12, name: "Tan Suede Chukka Boot", price: 650, colours: ["Tan"] },
 ];
 
 const MAX_ADDED = 50;
